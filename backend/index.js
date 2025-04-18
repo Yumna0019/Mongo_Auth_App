@@ -4,7 +4,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://mongo-auth-app.vercel.app'  // Allow only your frontend to access the API
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
