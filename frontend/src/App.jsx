@@ -1,4 +1,4 @@
-// import { useEffect, useState } from 'react';
+// import {  useState } from 'react';
 // import axios from 'axios';
 // import './App.css';
 
@@ -7,42 +7,50 @@
 //   const [form, setForm] = useState({ name: '', email: '' });
 
 //   const fetchUsers = async () => {
-//     const res = await axios.get('http://localhost:3001/api/users');  // Local backend URL
-//     setUsers(res.data);
+//     try {
+//       const res = await axios.get('http://localhost:3001/api/users');
+//       setUsers(res.data);
+//     } catch (err) {
+//       console.error('Error fetching users:', err.message);
+//     }
 //   };
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-//     await axios.post('http://localhost:3001/api/users', form);  // Local backend URL
-//     setForm({ name: '', email: '' });
-//     fetchUsers();
+//     try {
+//       await axios.post('http://localhost:3001/api/users', form);
+//       setForm({ name: '', email: '' });
+//       fetchUsers();
+//     } catch (err) {
+//       console.error('Error submitting form:', err.message);
+//     }
 //   };
 
-//   useEffect(() => {
-//     fetchUsers();
-//   }, []);
-
 //   return (
-//     <div style={{ padding: '2rem' }}>
-//       <h2>Add User</h2>
-//       <form onSubmit={handleSubmit}>
+//     <div className="container">
+//       <h2 className="heading">Add User</h2>
+//       <form onSubmit={handleSubmit} className="form">
 //         <input
+//           type="text"
 //           placeholder="Name"
 //           value={form.name}
 //           onChange={(e) => setForm({ ...form, name: e.target.value })}
+//           className="input"
 //         />
 //         <input
+//           type="email"
 //           placeholder="Email"
 //           value={form.email}
 //           onChange={(e) => setForm({ ...form, email: e.target.value })}
+//           className="input"
 //         />
-//         <button type="submit">Submit</button>
+//         <button type="submit" className="button">Submit</button>
 //       </form>
 
-//       <h3>User Emails</h3>
-//       <ul>
+//       <h3 className="sub-heading">User Emails</h3>
+//       <ul className="list">
 //         {users.map((user, idx) => (
-//           <li key={idx}>{user.email}</li>
+//           <li key={idx} className="list-item">{user.email}</li>
 //         ))}
 //       </ul>
 //     </div>
@@ -53,7 +61,8 @@
 
 
 
-import {  useState } from 'react';
+
+import { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -63,7 +72,7 @@ function App() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/api/users');
+      const res = await axios.get('https://mongo-auth-app-al5r.vercel.app/api/users');
       setUsers(res.data);
     } catch (err) {
       console.error('Error fetching users:', err.message);
@@ -73,7 +82,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3001/api/users', form);
+      await axios.post('https://mongo-auth-app-al5r.vercel.app/api/users', form);
       setForm({ name: '', email: '' });
       fetchUsers();
     } catch (err) {
@@ -104,8 +113,8 @@ function App() {
 
       <h3 className="sub-heading">User Emails</h3>
       <ul className="list">
-        {users.map((user, idx) => (
-          <li key={idx} className="list-item">{user.email}</li>
+        {users.map((user) => (
+          <li key={user._id} className="list-item">{user.email}</li> // Use user._id if available
         ))}
       </ul>
     </div>
