@@ -60,7 +60,7 @@
 // export default App;
 
 
-import {  useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -76,6 +76,10 @@ function App() {
       console.error('Error fetching users:', err.message);
     }
   };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
