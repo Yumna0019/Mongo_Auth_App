@@ -60,9 +60,7 @@
 // export default App;
 
 
-
-
-import { useState } from 'react';
+import {  useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
@@ -113,8 +111,8 @@ function App() {
 
       <h3 className="sub-heading">User Emails</h3>
       <ul className="list">
-        {users.map((user) => (
-          <li key={user._id} className="list-item">{user.email}</li> // Use user._id if available
+        {users.map((user, idx) => (
+          <li key={idx} className="list-item">{user.email}</li>
         ))}
       </ul>
     </div>
@@ -122,3 +120,4 @@ function App() {
 }
 
 export default App;
+
