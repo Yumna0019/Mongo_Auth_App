@@ -6,7 +6,7 @@ require('dotenv').config();
 const app = express();
 // app.use(cors());
 app.use(cors({
-  origin: "https://mongo-auth-app.vercel.app", // your frontend URL
+  origin: "*", // your frontend URL   : https://mongo-auth-app.vercel.app
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 app.use(express.json());
